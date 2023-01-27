@@ -1,2 +1,2 @@
-# Hacker_Rank_Codes
-Here Hacker Rank Codes Will be available
+# Java_Programming_Codes
+Here Java Programming Codes Will be available
