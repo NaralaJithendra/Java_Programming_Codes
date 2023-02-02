@@ -5,8 +5,12 @@ Here Java Programming Codes Will be shared
 </a>
 <p align="center">
 <h1>Collections</h1>
-<a href="https://github.com/NaralaJithendra/Java_Programming_Codes/tree/main/collections">Click Here👆</a<
+<a href="https://github.com/NaralaJithendra/Java_Programming_Codes/tree/main/collections">Click Here👆</a>
+</p>
 <p>
+<h1>Patterns</h1>
+<a href="https://github.com/NaralaJithendra/Java_Programming_Codes/tree/main/patterns">Click Here👆</a>
+</p>
 <p align="center">
 <h1>My Other Java Contributions</h1>
 <a href="https://github.com/Srinusivarathri/Java-problems">Click Here👆🏻</a>
