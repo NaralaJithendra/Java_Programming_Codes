@@ -1,0 +1,17 @@
+name: Assign Code Owners
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  assign-codeowners:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Assign Code Owners
+        uses: juzhiyuan/assign-codeowners@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
