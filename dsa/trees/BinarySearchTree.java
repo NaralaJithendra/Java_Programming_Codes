@@ -1,11 +1,10 @@
-package com.examples.java.dsa;
+package trees;
 
 /**
- * @author NaralaJithendra
- *
+ *  @NaralaJithendra
  */
 
-public class BinarySearchTree {
+class BinarySearchTree {
 	private TreeNode root;
 	
 	public BinarySearchTree() {
@@ -13,19 +12,19 @@ public class BinarySearchTree {
 	}
 	
 	public void insert(int val) {
-		insertValue(root,val);
+		root=insertValue(root,val);
 	}
 	
 	private TreeNode insertValue(TreeNode root, int val) {
 		if(root == null) {
 			return new TreeNode(val);
+
 		}
-		
 		if(val < root.val) {
-			root.left = new TreeNode(root.left, val);
+			root.left = insertValue(root.left, val);
 		}
 		else {
-			root.right = new TreeNode(root.right, val);
+			root.right = insertValue(root.right, val);
 		}
 		
 		return root;
@@ -35,14 +34,12 @@ public class BinarySearchTree {
 		updateValue( oldVal, newVal);
 	}
 	
-	private TreeNode updateValue(int oldVal, int newVal) {
-		TreeNode root = search(root, oldVal);
+	private void updateValue(int oldVal, int newVal) {
+		TreeNode node = search(root, oldVal);
 		
-		if(root!=null) {
-			root.val = newVal;
+		if(node!=null) {
+			node.val = newVal;
 		}
-		
-		return root;
 	}
 	
 	public TreeNode search(TreeNode root, int val) {
@@ -54,7 +51,7 @@ public class BinarySearchTree {
 			return root;
 		}
 		
-		return val < root.val ? searchValue(root.left, val):seacrhValue(root.right, val);
+		return val < root.val ? searchValue(root.left, val):searchValue(root.right, val);
 	}
 	
 	private TreeNode updateValue2(int oldVal,int newVal) {
@@ -63,8 +60,9 @@ public class BinarySearchTree {
 		return root;
 	}
 	
-	public void delete(int val) {
-	    root = deleteValue(root, val);
+	public TreeNode delete(int val) {
+	    
+		return deleteValue(root, val);
 	}
 
 	private TreeNode deleteValue(TreeNode node, int val) {
@@ -170,10 +168,10 @@ public class BinarySearchTree {
 	    if (node == null) return -1; // Not found
 	    if (node.val == val) return level; // Node found, return its level
 
-	    int left = findLevel(node.left, val, level + 1);
+	    int left = findLevelValue(node.left, val, level + 1);
 	    if (left != -1) return left; // If found in left subtree, return it
 
-	    return findLevel(node.right, val, level + 1); // Search in right subtree
+	    return findLevelValue(node.right, val, level + 1); // Search in right subtree
 	}
 	
 	/*
@@ -203,7 +201,8 @@ public class BinarySearchTree {
 	    return Math.max(findHeight(node.left), findHeight(node.right)) + 1;
 	}
 
+	public TreeNode getRootNode() {
+		return root;
+	}
 
-	
-	
 }
