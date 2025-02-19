@@ -1,8 +1,12 @@
-package com.examples.java.dsa;
+package trees;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class TraversalOrder {
+/**
+ *  @NaralaJithendra
+ */
+
+class TraversalOrder {
 	/*
 	  
 			  50
@@ -18,7 +22,7 @@ public class TraversalOrder {
 
 	 */
 	public void inorder(TreeNode node) {
-	    if (node == null) return;
+	    if (node == null) System.out.println("Null");
 	    inorder(node.left);
 	    System.out.print(node.val + " ");
 	    inorder(node.right);

@@ -1,19 +1,18 @@
 /**
  * 
  */
-package com.examples.java.dsa;
+package trees;
 
 /**
- * @author JithendraNarala
- *
+ *  @NaralaJithendra
  */
+
 public class PrintTree {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		TreeNode node;
 		BinarySearchTree bst = new BinarySearchTree();
 		TraversalOrder order = new TraversalOrder();
@@ -32,9 +31,9 @@ public class PrintTree {
 		bst.insert(20);
 		bst.insert(60);
 		bst.insert(40);
-		node = bst.insert(80);
+		bst.insert(80);
+		node=bst.getRootNode();
 		order.inorder(node);
-		
 		
 	}
 

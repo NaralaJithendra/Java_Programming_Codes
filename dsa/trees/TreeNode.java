@@ -1,10 +1,10 @@
-package com.examples.java.dsa;
+package trees;
 
 /**
- * @author NaralaJithendra
- *
+ *  @NaralaJithendra
  */
-public class TreeNode {
+
+class TreeNode {
 	TreeNode left;
 	TreeNode right;
 	int val;
