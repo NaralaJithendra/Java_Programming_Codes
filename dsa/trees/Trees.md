@@ -183,4 +183,4 @@ The **height** of a tree is the number of edges on the longest path from the roo
 
 ---
 
-Sample Code -[Trees](https://github.com/NaralaJithendra/Java_Programming_Codes/tree/main/DSA/Trees)
+Sample Code -[Trees](https://github.com/NaralaJithendra/Java_Programming_Codes/tree/main/dsa/trees)
