@@ -177,10 +177,19 @@ The **height** of a tree is the number of edges on the longest path from the roo
 - If a tree has only one node, its height is **0**.
 - If a tree is empty (i.e., root is `null`), its height is **-1**.
 - Height of a node is determined by:
-  \[
-  \text{Height} = 1 + \max(\text{height of left subtree}, \text{height of right subtree})
-  \]
+    `Height = 1 + max(height of left subtree, height of right subtree)`
 
+### **📝 Example Tree**
+```
+        1
+       / \
+      2   3
+     / \
+    4   5
+```
+- **Height of tree** (root node `1`): **2**  
+- **Height of node `2`**: **1**  
+- **Height of node `4` and `5`**: **0** (leaf nodes)
 ---
 
 Sample Code -[Trees](https://github.com/NaralaJithendra/Java_Programming_Codes/tree/main/dsa/trees)
