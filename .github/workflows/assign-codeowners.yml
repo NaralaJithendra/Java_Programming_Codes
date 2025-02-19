@@ -1,22 +1,41 @@
-name: Assign Code Owners
+name: Assign Reviewers from CODEOWNERS
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
-
-permissions:
-  pull-requests: write
-  contents: read
+    types: [opened, synchronize, reopened, edited]
 
 jobs:
-  assign-reviewers:
+  assign:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Assign Reviewers
-        uses: peter-evans/add-reviewers@v3
+      - name: Assign reviewers based on CODEOWNERS
+        uses: actions/github-script@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          reviewers: "NaralaJithendra"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            try {
+              // No need to list files; GitHub handles CODEOWNERS automatically.
+              // We just need to trigger the review request.  The GitHub API
+              // will use the CODEOWNERS file to determine who to suggest.
+              await github.rest.pulls.requestReviewers({
+                owner: owner,
+                repo: repo,
+                pull_number: prNumber,
+                // Add reviewers here if you want to explicitly request review from specific users
+                // even if they are not in the CODEOWNERS file:
+                // reviewers: ['specific-user1', 'specific-user2'],
+                // Add team reviewers here similar to above:
+                // team_reviewers: ['specific-team1', 'specific-team2'],
+              });
+
+              console.log(`Reviewers requested for PR #${prNumber}`);
+            } catch (error) {
+              console.error(`Error requesting reviewers: ${error}`);
+            }
