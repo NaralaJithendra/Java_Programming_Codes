@@ -4,14 +4,19 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+permissions:
+  pull-requests: write
+  contents: read
+
 jobs:
-  assign-codeowners:
+  assign-reviewers:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
-      
-      - name: Assign Code Owners
-        uses: juzhiyuan/assign-codeowners@v1
+        uses: actions/checkout@v3
+
+      - name: Assign Reviewers
+        uses: peter-evans/add-reviewers@v2
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          reviewers: "NaralaJithendra"
