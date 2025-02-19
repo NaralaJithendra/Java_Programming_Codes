@@ -6,7 +6,11 @@ on:
 
 jobs:
   assign:
+    permissions:
+      pull_requests: write # Explicitly grant write permission
+
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -21,21 +25,18 @@ jobs:
             const repo = context.repo.repo;
 
             try {
-              // No need to list files; GitHub handles CODEOWNERS automatically.
-              // We just need to trigger the review request.  The GitHub API
-              // will use the CODEOWNERS file to determine who to suggest.
-              await github.rest.pulls.requestReviewers({
+              const response = await github.rest.pulls.requestReviewers({
                 owner: owner,
                 repo: repo,
                 pull_number: prNumber,
-                // Add reviewers here if you want to explicitly request review from specific users
-                // even if they are not in the CODEOWNERS file:
-                // reviewers: ['specific-user1', 'specific-user2'],
-                // Add team reviewers here similar to above:
-                // team_reviewers: ['specific-team1', 'specific-team2'],
               });
 
+              console.log("API Response:", JSON.stringify(response.data, null, 2)); // Log formatted JSON
               console.log(`Reviewers requested for PR #${prNumber}`);
+
             } catch (error) {
-              console.error(`Error requesting reviewers: ${error}`);
+              console.error("API Error:", error); // Log the full error object
+              if (error.response) {
+                console.error("API Error Response:", JSON.stringify(error.response.data, null, 2)); // Log detailed error
+              }
             }
