@@ -1,42 +1,17 @@
-name: Assign Reviewers from CODEOWNERS
+name: Assign Code Owners
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, edited]
+    types: [opened, synchronize, reopened]
 
 jobs:
-  assign:
-    permissions:
-      pull_requests: write # Explicitly grant write permission
-
+  assign-codeowners:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Assign reviewers based on CODEOWNERS
-        uses: actions/github-script@v6
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Assign Code Owners
+        uses: juzhiyuan/assign-codeowners@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const prNumber = context.payload.pull_request.number;
-            const owner = context.repo.owner;
-            const repo = context.repo.repo;
-
-            try {
-              const response = await github.rest.pulls.requestReviewers({
-                owner: owner,
-                repo: repo,
-                pull_number: prNumber,
-              });
-
-              console.log("API Response:", JSON.stringify(response.data, null, 2)); // Log formatted JSON
-              console.log(`Reviewers requested for PR #${prNumber}`);
-
-            } catch (error) {
-              console.error("API Error:", error); // Log the full error object
-              if (error.response) {
-                console.error("API Error Response:", JSON.stringify(error.response.data, null, 2)); // Log detailed error
-              }
-            }
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
