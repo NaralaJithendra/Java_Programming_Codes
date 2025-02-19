@@ -17,12 +17,8 @@ class BinarySearchTree {
 	
 	private TreeNode insertValue(TreeNode root, int val) {
 		if(root == null) {
-			System.out.println("Inserting");
 			return new TreeNode(val);
 
-		}
-		else{
-			System.out.println(root.val);
 		}
 		if(val < root.val) {
 			root.left = insertValue(root.left, val);
@@ -35,17 +31,15 @@ class BinarySearchTree {
 	}
 	
 	public void update(int oldVal, int newVal) {
-		root=updateValue( oldVal, newVal);
+		updateValue( oldVal, newVal);
 	}
 	
-	private TreeNode updateValue(int oldVal, int newVal) {
-		root = search(root, oldVal);
+	private void updateValue(int oldVal, int newVal) {
+		TreeNode node = search(root, oldVal);
 		
-		if(root!=null) {
-			root.val = newVal;
+		if(node!=null) {
+			node.val = newVal;
 		}
-		
-		return root;
 	}
 	
 	public TreeNode search(TreeNode root, int val) {
@@ -208,21 +202,7 @@ class BinarySearchTree {
 	}
 
 	public TreeNode getRootNode() {
-		return this.root;
-	}
-
-	public void postorder(TreeNode node) {
-		if (node == null) return;
-		postorder(node.left);
-		postorder(node.right);
-		System.out.print(node.val + " ");
-	}
-
-	public void inorder(TreeNode node) {
-	    if (node == null) return;
-	    inorder(node.left);
-	    System.out.print(node.val + " ");
-	    inorder(node.right);
+		return root;
 	}
 
 }

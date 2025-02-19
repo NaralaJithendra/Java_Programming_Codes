@@ -22,7 +22,7 @@ class TraversalOrder {
 
 	 */
 	public void inorder(TreeNode node) {
-	    if (node == null) System.out.println("Null");
+	    if (node == null) return ;
 	    inorder(node.left);
 	    System.out.print(node.val + " ");
 	    inorder(node.right);
