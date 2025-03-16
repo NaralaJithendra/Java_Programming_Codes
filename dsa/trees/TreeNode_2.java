@@ -1,4 +1,4 @@
-package examples.trees;
+package trees;
 
 public class TreeNode_2{
   TreeNode_2 left;
