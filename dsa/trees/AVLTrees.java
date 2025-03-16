@@ -65,8 +65,8 @@ public class AVLTrees{
     TreeNode_2 x = node.right;
     TreeNode_2 y = x.left;
     
-    node.left = y;
-    y.right = x;
+    x.left = node;
+    node.right = y;
 
     node.height = 1+Math.max(height(node.height),height(node.right));
     x.height = 1+Math.max(height(x.height),height(x.right));
@@ -77,8 +77,8 @@ public class AVLTrees{
     TreeNode_2 x = node.left;
     TreeNode_2 y = x.right;
     
-    node.right = y;
-    y.left = x;
+    x.right = node;
+    node.left = y;
 
     node.height = 1+Math.max(height(node.height),height(node.right));
     x.height = 1+Math.max(height(x.height),height(x.right));
@@ -87,9 +87,11 @@ public class AVLTrees{
 
   public void printValue(){
     inOrder(node);
+    Systm.out.println();
   }
 
   private void inOrder(TreeNode_2 node){
+    if(node == null) return;
     inOrder(node.left);
     System.out.print(node.val+" ");
     inOrder(node.right);
