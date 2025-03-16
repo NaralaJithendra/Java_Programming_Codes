@@ -1,4 +1,4 @@
-package examples.trees;
+package trees;
 
 public class AVLTrees{
   private TreeNode_2 node;
