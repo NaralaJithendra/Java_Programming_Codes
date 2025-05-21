@@ -1,17 +1,22 @@
-name: Assign Code Owners
+name: Assign Reviewers
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, ready_for_review, synchronize, edited]
+
+permissions:
+  pull-requests: write
+  contents: read
 
 jobs:
-  assign-codeowners:
+  add_reviewers:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      
-      - name: Assign Code Owners
-        uses: juzhiyuan/assign-codeowners@v1
+      - uses: actions/checkout@v3
+      - uses: kentaro-m/auto-assign-action@v1.2.3
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reviewers: |
+            NaralaJithendra
+      - name: Log Reviewer Assignment
+        run: echo "Reviewers assigned successfully!"
